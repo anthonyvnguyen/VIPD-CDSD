@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { screen } from '@testing-library/react';
 import App from '../App';
 import {
@@ -30,7 +30,8 @@ import {
   Tab,
   TabList,
   TabPanels,
-  TabPanel
+  TabPanel,
+  Highlight
 } from '@chakra-ui/react';
 import { theme }from '../components/themeFile.js';
 import { useRiskPrediction } from '../context/RiskPredictionContext';
@@ -100,21 +101,51 @@ const factors = [
 
 const Results = () => {
 
-
-const [incomeSliderValue, setIncomeSliderValue] = useState(50)
-
+const { riskPrediction } = useRiskPrediction();
+const [randomFactors, setRandomFactors] = useState([]);
 const labelStyles = {
     mt: '2',
     ml: '-2.5',
     fontSize: 'sm',
 }
+const getRandomFactors = () => {
+    const shuffled = [...factors].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 5);
+  };
 
-const { riskPrediction } = useRiskPrediction();
+useEffect(() => {
+    setRandomFactors(getRandomFactors());
+}, [riskPrediction]);
+
+function FactorTabs({ data }) {
+
+    return (
+      <Tabs isFitted>
+        <TabList>
+          {data.map((tab, index) => (
+            <Tab key={index} fontWeight="bold">{tab.label}</Tab>
+          ))}
+        </TabList>
+        <TabPanels>
+          {data.map((tab, index) => (
+            <TabPanel p={4} key={index}>
+              {tab.content}
+            </TabPanel>
+          ))}
+        </TabPanels>
+      </Tabs>
+    )
+  }
+
+
+useEffect(() => {
+    setRandomFactors(getRandomFactors());
+  }, [riskPrediction]);
 
 
 	return (
     <ChakraProvider name="results" theme={theme} >
-      <VStack spacing='10' bg="brand.200">
+      <VStack spacing='10' bg="brand.200" p='10'>
         <Box>
           <Heading align="center" size='lg'>Here Are Your Results</Heading>
         </Box>
@@ -127,32 +158,19 @@ const { riskPrediction } = useRiskPrediction();
             {riskPrediction}%
         </Circle>
         <div>
-        <Heading align="center" size='2xl'>These Are Your 5 Most Influential Factors</Heading>
+        <Heading align="center" size='2xl' p='2'>
+            <Highlight
+                query='Concerning'
+                styles={{ px: '2', py: '1', rounded: 'full', bg: 'red.400' }}
+            >
+                These Are Your 5 Most Concerning Factors
+            </Highlight>
+            </Heading>
         <Heading align="center" size='2xl'>to Your Risk of Developing Diabetes</Heading>
         </div>
 
         <Box w='100%'>
-            <Tabs size='lg' isFitted>
-            <TabList>
-                <Tab>One</Tab>
-                <Tab>Two</Tab>
-                <Tab>Three</Tab>
-                <Tab>Four</Tab>
-                <Tab>Five</Tab>
-            </TabList>
-
-            <TabPanels>
-                <TabPanel>
-                <p>one!</p>
-                </TabPanel>
-                <TabPanel>
-                <p>two!</p>
-                </TabPanel>
-                <TabPanel>
-                <p>three!</p>
-                </TabPanel>
-            </TabPanels>
-            </Tabs>
+            <FactorTabs data={randomFactors}/>
         </Box>
         </VStack> {/* END OF QUESTIONS */}
 

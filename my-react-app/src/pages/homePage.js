@@ -80,7 +80,7 @@ const onPrediction = () => {
 
 	return (
     <ChakraProvider name="home" theme={theme} >
-      <VStack spacing='10' bg="brand.200" pb={4}>
+      <VStack spacing='10' bg="brand.200" p={10}>
         <Box>
           <Heading align="center" size='lg'>Social Determinants</Heading>
           <Heading align="center" size='2xl'>Analyze Your Risk of Diabetes</Heading>
@@ -88,7 +88,7 @@ const onPrediction = () => {
 
         
 
-        <VStack bg='brand.100' borderWidth='50px' rounded='lg' borderColor='brand.100' spacingY='8px' divider={<StackDivider borderColor='brand.200'/>}>
+        <VStack bg='brand.100' borderWidth='50px' rounded='lg' borderColor='brand.100' spacingY='8px' w='90%' divider={<StackDivider borderColor='brand.200'/>}>
             
         <FormControl as='fieldset'>
                 <VStack align='stretch' spacing='30px'>

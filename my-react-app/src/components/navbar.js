@@ -7,7 +7,7 @@ export default function Navbar() {
     <ChakraProvider theme={theme}>
       <Center w="100%" bg="brand.300">
         <HStack h="50px" spacing="100px" as='b'>
-          <Link href="https://google.com" >Home</Link>
+          <Link href="http://localhost:3000/" >Home</Link>
           <Link href="https://gmail.com">Our Team</Link>
           <Link href="https://drive.google.com">Our Model</Link>
           <Link href="https://google.com/maps">More Resources</Link>
