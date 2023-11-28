@@ -39,11 +39,12 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react';
 import { theme }from '../components/themeFile.js';
+import { useRiskPrediction } from '../context/RiskPredictionContext';
 
 
 
 
-const Home = () => {
+const Home = ({ onPredict }) => {
 
   //this.state = {_button : <Button isLoading loadingText='loading' colorScheme='teal'></Button>};
 
@@ -63,14 +64,18 @@ const [ageSliderValue, setAgeSliderValue] = useState(50)
 
 const [showLoader, setShowLoader] = useState(false)
 
-const [riskPrediction, setRiskPrediction] = useState(50);
+const { setRiskPrediction } = useRiskPrediction();
 
 
 const onPrediction = () => {
     setShowLoader(true)
-    setTimeout(() => setShowLoader(false), 1000)
+    setTimeout(() => {
+        setShowLoader(false);
+        onPredict();
+    }, 1000);
+    
     setRiskPrediction(Math.floor(Math.random() * 100))
-  };
+};
 
 
 	return (

@@ -39,13 +39,29 @@ import {
   NumberDecrementStepper,
 } from '@chakra-ui/react';
 import { theme }from '../components/themeFile.js';
+import { useRiskPrediction } from '../context/RiskPredictionContext';
 
 
 
+const factors = [
+    "Household Income level",
+    "Employment Status",
+    "Marital Status",
+    "Education Level",
+    "Alcohol Consumption",
+    "Has a Phone",
+    "Has Children",
+    "Urban or Rural",
+    "Own or Rent a Home",
+    "Smoker",
+    "Divorced Parents",
+    "Drunk Family",
+    "Veteran",
+    "Depressed"
+  ];
+  
 
 const Results = () => {
-
-  //this.state = {_button : <Button isLoading loadingText='loading' colorScheme='teal'></Button>};
 
 
 const [incomeSliderValue, setIncomeSliderValue] = useState(50)
@@ -56,14 +72,7 @@ const labelStyles = {
     fontSize: 'sm',
 }
 
-const [alc, setAlc] = React.useState(0)
-const handleAlc = (alc) => setAlc(alc)
-
-const [ageSliderValue, setAgeSliderValue] = useState(50);
-
-const [showLoader, setShowLoader] = useState(false);
-
-
+const { riskPrediction } = useRiskPrediction();
 
 
 	return (
@@ -71,7 +80,6 @@ const [showLoader, setShowLoader] = useState(false);
       <VStack spacing='10' bg="brand.200">
         <Box>
           <Heading align="center" size='lg'>Here Are Your Results</Heading>
-          <Heading align="center" size='2xl'>Analyze Your Risk of Diabetes</Heading>
         </Box>
 
         
@@ -79,8 +87,13 @@ const [showLoader, setShowLoader] = useState(false);
         <VStack bg='brand.100' borderWidth='50px' rounded='lg' borderColor='brand.100' spacingY='8px' divider={<StackDivider borderColor='brand.200'/>}>
             
         <Circle size='300px' bg='tomato' color='white' fontSize='9xl'>
-            {riskPrediction}
+            {riskPrediction}%
         </Circle>
+        <div>
+        <Heading align="center" size='2xl'>These Are Your 5 Most Influential Factors</Heading>
+        <Heading align="center" size='2xl'>to Your Risk of Developing Diabetes</Heading>
+        </div>
+
 
         </VStack> {/* END OF QUESTIONS */}
 
