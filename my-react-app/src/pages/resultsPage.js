@@ -34,6 +34,7 @@ import {
   Highlight
 } from '@chakra-ui/react';
 import { theme }from '../components/themeFile.js';
+import RiskViz from '../components/riskVisualization.js';
 import { useRiskPrediction } from '../context/RiskPredictionContext';
 
 
@@ -113,9 +114,7 @@ const getRandomFactors = () => {
     return shuffled.slice(0, 5);
   };
 
-useEffect(() => {
-    setRandomFactors(getRandomFactors());
-}, [riskPrediction]);
+
 
 function FactorTabs({ data }) {
 
@@ -150,13 +149,13 @@ useEffect(() => {
           <Heading align="center" size='lg'>Here Are Your Results</Heading>
         </Box>
 
-        
-
         <VStack bg='brand.100' borderWidth='50px' rounded='lg' borderColor='brand.100' spacingY='8px' divider={<StackDivider borderColor='brand.200'/>}>
-            
+        <Box padding={20}>
         <Circle size='300px' bg='tomato' color='white' fontSize='9xl'>
-            {riskPrediction}%
+            <RiskViz randomFactors={randomFactors}/>
+
         </Circle>
+        </Box>
         <div>
         <Heading align="center" size='2xl' p='2'>
             <Highlight
