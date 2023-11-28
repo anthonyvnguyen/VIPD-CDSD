@@ -3,6 +3,7 @@ import { ChakraProvider, Fade} from '@chakra-ui/react'
 import Navbar from './components/navbar';
 import Home from './pages/homePage';
 import Results from './pages/resultsPage';
+import Lower from './components/lowerBound';
 import React, { useState, useEffect } from 'react'
 import { RiskPredictionProvider } from './context/RiskPredictionContext';
 
@@ -15,7 +16,7 @@ function App() {
   }
 
   return (
-    <ChakraProvider bg='brand.100'>
+    <ChakraProvider bg='brand.100' >
       <RiskPredictionProvider>
         <Navbar />
         <Fade in={!showResults}>
@@ -24,8 +25,9 @@ function App() {
         <Fade in={showResults}>
           {showResults && <Results />}
         </Fade>
-        
+        <Lower />
       </RiskPredictionProvider>
+      
     </ChakraProvider>
   );
 }

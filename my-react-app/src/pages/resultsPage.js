@@ -26,17 +26,11 @@ import {
   Square,
   Circle,
   StackDivider,
-  Slider,
-  SliderTrack,
-  SliderFilledTrack,
-  SliderThumb,
-  SliderMark,
-  Flex,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
+  Tabs,
+  Tab,
+  TabList,
+  TabPanels,
+  TabPanel
 } from '@chakra-ui/react';
 import { theme }from '../components/themeFile.js';
 import { useRiskPrediction } from '../context/RiskPredictionContext';
@@ -44,21 +38,64 @@ import { useRiskPrediction } from '../context/RiskPredictionContext';
 
 
 const factors = [
-    "Household Income level",
-    "Employment Status",
-    "Marital Status",
-    "Education Level",
-    "Alcohol Consumption",
-    "Has a Phone",
-    "Has Children",
-    "Urban or Rural",
-    "Own or Rent a Home",
-    "Smoker",
-    "Divorced Parents",
-    "Drunk Family",
-    "Veteran",
-    "Depressed"
-  ];
+    {
+        label: 'Household Income Level',
+        content: 'Lower household income levels can lead to limited access to healthy food options and healthcare resources, potentially increasing the risk of diabetes due to poor diet and lack of medical guidance.'
+    },
+    {
+        label: 'Employment Status',
+        content: 'Unemployment or unstable employment can lead to stress and inconsistent income, which might result in poor dietary habits and reduced access to healthcare, elevating the risk of diabetes.'
+    },
+    {
+        label: 'Marital Status',
+        content: 'Married individuals often have better health outcomes due to shared resources and emotional support, which can help in managing lifestyle factors that influence diabetes risk, such as diet and exercise.'
+    },
+    {
+        label: 'Education Level',
+        content: 'Higher education levels are generally associated with better understanding of health risks and access to resources, leading to healthier lifestyle choices that can reduce the risk of diabetes.'
+    },
+    {
+        label: 'Alcohol Consumption',
+        content: 'Excessive alcohol consumption can lead to weight gain, liver disease, and pancreatic issues, all of which are risk factors for diabetes.'
+    },
+    {
+        label: 'Has a Phone',
+        content: 'Having a phone might indicate better access to health information and resources, potentially aiding in diabetes management and prevention through information accessibility.'
+    },
+    {
+        label: 'Has Children',
+        content: 'The responsibilities of parenthood can sometimes lead to neglect of personal health, potentially increasing the risk of diabetes due to factors like stress, lack of sleep, and poor diet.'
+    },
+    {
+        label: 'Urban or Rural',
+        content: 'Urban residents may have better access to healthcare and healthy food options, while rural residents might face challenges in these areas, influencing the risk of diabetes differently in each setting.'
+    },
+    {
+        label: 'Own or Rent a Home',
+        content: 'Homeownership can indicate a stable socioeconomic status, which is often associated with better access to healthcare and healthy lifestyle choices, reducing the risk of diabetes.'
+    },
+    {
+        label: 'Smoker',
+        content: 'Smoking is a known risk factor for diabetes as it affects blood sugar levels and leads to insulin resistance, thereby increasing the risk of type 2 diabetes.'
+    },
+    {
+        label: 'Divorced Parents',
+        content: 'Children from divorced families might experience emotional and financial stress, potentially leading to unhealthy lifestyle choices and increased risk of obesity and diabetes later in life.'
+    },
+    {
+        label: 'Drunk Family',
+        content: 'Living in a family with alcohol abuse issues can lead to stress and unhealthy coping mechanisms, such as poor diet and sedentary lifestyle, which are risk factors for diabetes.'
+    },
+    {
+        label: 'Veteran',
+        content: 'Veterans might face unique health challenges, including stress and mental health issues, which can influence lifestyle choices and potentially increase the risk of diabetes.'
+    },
+    {
+        label: 'Depressed',
+        content: 'Depression can lead to poor self-care, unhealthy eating habits, and decreased physical activity, all of which are risk factors for developing diabetes.'
+    },
+];
+
   
 
 const Results = () => {
@@ -94,7 +131,29 @@ const { riskPrediction } = useRiskPrediction();
         <Heading align="center" size='2xl'>to Your Risk of Developing Diabetes</Heading>
         </div>
 
+        <Box w='100%'>
+            <Tabs size='lg' isFitted>
+            <TabList>
+                <Tab>One</Tab>
+                <Tab>Two</Tab>
+                <Tab>Three</Tab>
+                <Tab>Four</Tab>
+                <Tab>Five</Tab>
+            </TabList>
 
+            <TabPanels>
+                <TabPanel>
+                <p>one!</p>
+                </TabPanel>
+                <TabPanel>
+                <p>two!</p>
+                </TabPanel>
+                <TabPanel>
+                <p>three!</p>
+                </TabPanel>
+            </TabPanels>
+            </Tabs>
+        </Box>
         </VStack> {/* END OF QUESTIONS */}
 
 
